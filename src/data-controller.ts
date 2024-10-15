@@ -11,22 +11,27 @@ function generateProductHTML(product: Product): string {
 
 function renderProducts(prods: Product[]): void {
     const mainDiv = document.getElementById("main-container");
-    const parser = new DOMParser();
+    if (!mainDiv) {
+        console.error("Main container not found");
+        return;
+    }
+
+    mainDiv.innerHTML = ""; // Clear existing content
 
     prods.forEach(product => {
-        const storeItem = generateProductHTML(product);
-        const parsed = parser.parseFromString(storeItem, "text/html");        
-        mainDiv?.appendChild(parsed?.querySelector('.store-item')!);
+        const storeItemHTML = generateProductHTML(product);
+        mainDiv.innerHTML += storeItemHTML;
     });
 }
 
 function getByCategory(category: string): void {
-    console.log(document.getElementById(category));
-
+    const filteredProducts = products.filter(product => product.category === category);
+    renderProducts(filteredProducts);
 }
 
 function getByRating(minRating: number): void {
-    // your code
+    const filteredProducts = products.filter(product => product.rating > minRating);
+    renderProducts(filteredProducts);
 }
 
-export { renderProducts, getByCategory, getByRating };
+export { products, renderProducts, getByCategory, getByRating };
