@@ -28,7 +28,10 @@
         import { products } from './src/data.ts';
         import { renderProducts, getByCategory, getByRating } from './src/data-controller.ts';
         renderProducts(products);
-
+        
+        document.addEventListener("click", (e) => {
+          console.log("Link clicked: " + e.AT_TARGET);
+        })
         // Bind click events using .addEventListener to the navigation links. Upon clicking:
 
         // - "Electronics" should display all products categorized as "Electronics."

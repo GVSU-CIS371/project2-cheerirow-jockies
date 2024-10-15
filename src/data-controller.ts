@@ -10,11 +10,19 @@ function generateProductHTML(product: Product): string {
 }
 
 function renderProducts(prods: Product[]): void {
-    // your code
+    const mainDiv = document.getElementById("main-container");
+    const parser = new DOMParser();
+
+    prods.forEach(product => {
+        const storeItem = generateProductHTML(product);
+        const parsed = parser.parseFromString(storeItem, "text/html");        
+        mainDiv?.appendChild(parsed?.querySelector('.store-item')!);
+    });
 }
 
 function getByCategory(category: string): void {
-    // your code
+    console.log(document.getElementById(category));
+
 }
 
 function getByRating(minRating: number): void {
