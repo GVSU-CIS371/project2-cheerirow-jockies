@@ -1,4 +1,4 @@
-import { Product, products } from "./data";
+import { Product, products } from "./data.ts";
 
 function generateProductHTML(product: Product): string {
     return `<div class="store-item">
@@ -34,4 +34,4 @@ function getByRating(minRating: number): void {
     renderProducts(filteredProducts);
 }
 
-export { products, renderProducts, getByCategory, getByRating };
+export { renderProducts, getByCategory, getByRating };
